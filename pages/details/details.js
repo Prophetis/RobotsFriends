@@ -1,28 +1,12 @@
-import { getData } from "../../scripts/sharedData.js";
+import {createAside} from "../../scripts/factories/createAside.js";
+import {createHeader} from "../../scripts/factories/createHeader";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = urlParams.get('id');
-  let sharedData = getData();
-
-  console.log(sharedData)
-
-  const user = sharedData.find(userData => userData.id === parseInt(userId));
-
-  if (user) {
-    const userDetailsContainer = document.getElementById('user-details');
-
-    const header = document.createElement('header');
-    const h1 = document.createElement('h1');
-    h1.textContent = user.name;
-
-    const section = document.createElement('section');
-    const emailParagraph = document.createElement('p');
-    emailParagraph.textContent = `Email: ${user.email}`;
-
-    section.appendChild(emailParagraph);
-
-    userDetailsContainer.appendChild(header);
-    userDetailsContainer.appendChild(section);
-  }
+document.addEventListener('DOMContentLoaded', async () => {
+  await createHeader(
+    'RobotFriends',
+    null,
+    "Joseph Joe",
+    'Josephjoe.gmail.com'
+  );
+  await createAside();
 });
